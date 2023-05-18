@@ -2,14 +2,12 @@ import express from 'express';
 import { Configuration,OpenAIApi } from 'openai';
 
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: "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",
 });
 
 
 const router = express.Router();
 const openai = new OpenAIApi(configuration);
-
-
 router.route('/').post(async (req, res) => {
   try {
     const { prompt } = req.body;
@@ -20,7 +18,6 @@ router.route('/').post(async (req, res) => {
       size: '1024x1024',
       response_format: 'b64_json',
     });
-
     const image = aiResponse.data.data[0].b64_json;
     res.status(200).json({ photo: image });
   } catch (error) {
